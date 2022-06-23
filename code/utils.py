@@ -94,6 +94,7 @@ def restructure_time_data_dict(time_data_dict):
                 continue
             restructured_data_dict[time_val] = {**restructured_data_dict[time_val],
                                        **{radiation:file_list}}
+
     return restructured_data_dict
 
 def main():

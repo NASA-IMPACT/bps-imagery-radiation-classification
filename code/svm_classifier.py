@@ -36,6 +36,7 @@ def data_processor(data_dict):
     df['Target'] = label
     pd_data = df.iloc[:,:-1]
     pd_label = df.iloc[:,-1]
+    
     return pd_data,pd_label
 
 
