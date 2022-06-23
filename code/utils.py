@@ -52,12 +52,12 @@ def plot_confusion_matrix(cnfsn_matrix, time_interval):
     df_cm = pd.DataFrame(cnfsn_matrix, class_names, class_names)
     fig = plt.figure(figsize=(10, 8))
     sns.heatmap(df_cm, annot=True, fmt="d", cmap='BuGn')
-    plt.xlabel(f"prediction")
-    plt.ylabel(f"label (ground truth)")
+    plt.xlabel("prediction")
+    plt.ylabel("label (ground truth)")
     if time_interval is not None:
         fig.savefig(f'confusion_matrix_time{time_interval}.png')
     else:
-        fig.savefig(f'confusion_matrix_time.png')
+        fig.savefig('confusion_matrix_time.png')
 
 def compute_padding(src_shape):
     """
