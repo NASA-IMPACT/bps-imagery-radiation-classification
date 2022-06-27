@@ -10,7 +10,7 @@ from config import DATA_BASE_PATH
 from utils import get_data_and_count, compute_padding, restructure_time_data_dict
 
 
-def data_processor(data_dict: "dict"):
+def data_processor(data_dict):
     """
     Creates padded input images and their labels
     :param data_dict: {dict} contains {radiation:[file paths]}
@@ -19,9 +19,7 @@ def data_processor(data_dict: "dict"):
     data_list = []
     label_list = []
     rad_list = [rad for rad in data_dict]
-    radiations_label_map = {
-        radiation: rad_idx for rad_idx, radiation in enumerate(rad_list)
-    }
+    radiations_label_map = {radiation: rad_idx for rad_idx, radiation in enumerate(rad_list)}
     print(radiations_label_map)
     radiations_label_map = {f"{DATA_BASE_PATH}Fe": 0, f"{DATA_BASE_PATH}X-ray": 1}
     for radiation, file_list in data_dict.items():
@@ -42,7 +40,7 @@ def data_processor(data_dict: "dict"):
     return pd_data, pd_label
 
 
-def svm_classifier(data: "dict", labels: "dict"):
+def svm_classifier(data, labels):
     """
     SVM training and testing
     :param data: radiation images
@@ -50,16 +48,11 @@ def svm_classifier(data: "dict", labels: "dict"):
     :return: None
     """
     svc = svm.SVC(kernel="linear", gamma="auto", probability=True)
-    x_train, x_test, y_train, y_test = train_test_split(
-        data, labels, test_size=0.30, shuffle=True
-    )
+    x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.30, shuffle=True)
     svc.fit(x_train, y_train)
     y_pred = svc.predict(x_test)
 
-    print(
-        f"Classification report on unknown data : "
-        f"{classification_report(y_test,y_pred)}"
-    )
+    print(f"Classification report on unknown data : " f"{classification_report(y_test,y_pred)}")
     print(f"Confusion matrix: {confusion_matrix(y_test, y_pred)}")
 
 
