@@ -1,7 +1,7 @@
 N_COLS = 270  # Number of columns in the largest image of the dataset
 N_ROWS = 325  # Number of rows in the largest image of the dataset
 
-DATA_BASE_PATH = "/rhome/vperekad/bps_imagery/data/"
+DATA_BASE_PATH = "./data"
 
 DOSEDICT = ["P278", "P282", "P286", "P244", "P250", "P253"]
 
