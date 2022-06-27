@@ -7,7 +7,7 @@ import seaborn as sns
 from config import N_ROWS, N_COLS, TIME_DICT, DATA_BASE_PATH, DOSEDICT
 
 
-def get_data_and_count(verbose = False):
+def get_data_and_count(verbose=False):
     """
     Creates a dictionary with file path after discarding 0Gy plates using the DOSEDICT
     provided in the dataset.
@@ -30,12 +30,12 @@ def get_data_and_count(verbose = False):
         data_dict[radiation] = filtered_files
         if verbose:
             print(f"Number of files in {radiation}, time interval wise: ")
-            print({val:len(rad_time_dict[val]) for val in rad_time_dict})
+            print({val: len(rad_time_dict[val]) for val in rad_time_dict})
         time_dict[radiation] = rad_time_dict
 
     if verbose:
         print("Number of samples for each radiation:")
-        print({radiation:len(data_dict[radiation]) for radiation in data_dict})
+        print({radiation: len(data_dict[radiation]) for radiation in data_dict})
 
     return data_dict, time_dict
 
@@ -48,7 +48,7 @@ def plot_confusion_matrix(cnfsn_matrix, time_interval):
     :return: None
     """
     print(f"Confusion matrix: {cnfsn_matrix}")
-    class_names = ['Fe','X-Ray']
+    class_names = ['Fe', 'X-Ray']
     df_cm = pd.DataFrame(cnfsn_matrix, class_names, class_names)
     fig = plt.figure(figsize=(10, 8))
     sns.heatmap(df_cm, annot=True, fmt="d", cmap='BuGn')
@@ -58,6 +58,7 @@ def plot_confusion_matrix(cnfsn_matrix, time_interval):
         fig.savefig(f'confusion_matrix_time{time_interval}.png')
     else:
         fig.savefig('confusion_matrix_time.png')
+
 
 def compute_padding(src_shape):
     """
@@ -69,14 +70,14 @@ def compute_padding(src_shape):
     """
 
     row_padding = N_ROWS - src_shape[0]
-    before_row = int(row_padding/2)
+    before_row = int(row_padding / 2)
     after_row = row_padding - before_row
 
     col_padding = N_COLS - src_shape[1]
-    before_col = int(col_padding/2)
+    before_col = int(col_padding / 2)
     after_col = col_padding - before_col
 
-    return ((before_row, after_row),(before_col,after_col))
+    return ((before_row, after_row), (before_col, after_col))
 
 
 def restructure_time_data_dict(time_data_dict):
@@ -90,15 +91,19 @@ def restructure_time_data_dict(time_data_dict):
     for radiation, time_dict in time_data_dict.items():
         for time_val, file_list in time_dict.items():
             if time_val not in restructured_data_dict.keys():
-                restructured_data_dict[time_val] = {radiation:file_list}
+                restructured_data_dict[time_val] = {radiation: file_list}
                 continue
-            restructured_data_dict[time_val] = {**restructured_data_dict[time_val],
-                                       **{radiation:file_list}}
+            restructured_data_dict[time_val] = {
+                **restructured_data_dict[time_val],
+                **{radiation: file_list},
+            }
 
     return restructured_data_dict
 
+
 def main():
     pass
+
 
 if __name__ == "__main__":
     main()
