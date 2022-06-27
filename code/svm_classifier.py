@@ -10,7 +10,7 @@ from config import DATA_BASE_PATH
 from utils import get_data_and_count, compute_padding, restructure_time_data_dict
 
 
-def data_processor(data_dict: "dict") -> "Pandas Dataframe":
+def data_processor(data_dict: "dict"):
     """
     Creates padded input images and their labels
     :param data_dict: {dict} contains {radiation:[file paths]}
@@ -40,7 +40,7 @@ def data_processor(data_dict: "dict") -> "Pandas Dataframe":
     return pd_data,pd_label
 
 
-def svm_classifier(data: "dict", labels: "dict") -> None:
+def svm_classifier(data: "dict", labels: "dict"):
     """
     SVM training and testing
     :param data: radiation images
