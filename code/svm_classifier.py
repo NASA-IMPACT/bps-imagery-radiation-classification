@@ -6,7 +6,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
-from config import DATA_BASE_PATH
+from config import DATA_BASE_PATH, SVM_TEST_SIZE
 from utils import get_data_and_count, compute_padding, restructure_time_data_dict
 
 
@@ -48,7 +48,9 @@ def svm_classifier(data, labels):
     :return: None
     """
     svc = svm.SVC(kernel="linear", gamma="auto", probability=True)
-    x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.30, shuffle=True)
+    x_train, x_test, y_train, y_test = train_test_split(
+        data, labels, test_size=SVM_TEST_SIZE, shuffle=True
+    )
     svc.fit(x_train, y_train)
     y_pred = svc.predict(x_test)
 
