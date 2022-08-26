@@ -1,8 +1,7 @@
 N_COLS = 270  # Number of columns in the largest image of the dataset
 N_ROWS = 325  # Number of rows in the largest image of the dataset
 
-# DATA_BASE_PATH = "/rhome/vperekad/bps_imagery/data/"
-DATA_BASE_PATH = "/Users/vp0023/research/impact_bps_imagery/data/"
+DATA_BASE_PATH = "/path/to/data/"
 
 DOESDICT = {
     'P278': 0,

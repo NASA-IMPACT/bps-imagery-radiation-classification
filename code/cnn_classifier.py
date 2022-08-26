@@ -152,7 +152,8 @@ def train_test_wrapper(data_path_dict, test_only=False):
     model_params['optimizer'] = optimizer
     model_params['loss'] = loss_criterion
     model_params['model'] = cnn
-    train_cnn(train_data, val_data, model_params)
+    if not test_only:
+        train_cnn(train_data, val_data, model_params)
     test_cnn(test_data, model_params, grad_cam=False)
 
 
@@ -162,7 +163,7 @@ def main():
     # train_test_wrapper(data_paths) # use this running the classifier on the entire data
     time = input("Enter the data to be used in the classifier (Valid options: 4,24,48): ")
     assert int(time) in (4, 24, 48), "Invalid option entered"
-    # set test_only to True when testing the network
+    # set test_only to True when only testing the network (ie. disable training)
     train_test_wrapper(time_data_dict[int(time)], test_only=False)
 
 
