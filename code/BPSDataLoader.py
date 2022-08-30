@@ -40,7 +40,7 @@ class RadDataLoader(Dataset):
         self.blank_label[idx][class_label] = 1
         raw_img = imread(data_path)
         ascol = raw_img.reshape(-1, 1)
-        ascol_scaled = MinMaxScaler(feature_range=(0, 255)).fit_transform(ascol)
+        ascol_scaled = MinMaxScaler(feature_range=(0, 1)).fit_transform(ascol)
         scaled_img = ascol_scaled.reshape(raw_img.shape)
         # compute padding required
         padding = compute_padding(scaled_img.shape)
