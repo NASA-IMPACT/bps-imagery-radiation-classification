@@ -46,10 +46,7 @@ TIME_DICT = {
     "P253": 48,
 }
 
-RAD_LABEL = {
-    f"{DATA_BASE_PATH}Fe": 0,
-    f"{DATA_BASE_PATH}X-RAY": 1
-}
+RAD_LABEL = {f"{DATA_BASE_PATH}Fe": 0, f"{DATA_BASE_PATH}X-RAY": 1}
 
 THRESHOLD_TRAIN_SIZE = 0.7
 

@@ -8,8 +8,7 @@ import seaborn as sns
 import torch
 from captum.attr import visualization as viz
 
-from config import N_ROWS, N_COLS, TIME_DICT, DATA_BASE_PATH, ZERODOSE, CNN_CONFUSION, \
-    GRADCAM_PATH
+from config import N_ROWS, N_COLS, TIME_DICT, DATA_BASE_PATH, ZERODOSE, CNN_CONFUSION, GRADCAM_PATH
 
 
 def visualize_gradcam(attr, img, batch_idx, labels, pred_labels):
