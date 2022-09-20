@@ -1,7 +1,8 @@
-N_COLS = 270  # Number of columns in the largest image of the dataset
+N_COLS = 325  # Number of columns in the largest image of the dataset
 N_ROWS = 325  # Number of rows in the largest image of the dataset
 
 DATA_BASE_PATH = "/path/to/data/"
+GRADCAM_PATH = "./grad_cam"
 
 DOESDICT = {
     'P278': 0,
@@ -43,6 +44,11 @@ TIME_DICT = {
     "P250": 24,
     "P251": 48,
     "P253": 48,
+}
+
+RAD_LABEL = {
+    f"{DATA_BASE_PATH}Fe": 0,
+    f"{DATA_BASE_PATH}X-RAY": 1
 }
 
 THRESHOLD_TRAIN_SIZE = 0.7
