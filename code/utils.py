@@ -1,12 +1,15 @@
 import glob
-import torch
+import os
+
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
-import numpy as np
+import torch
 from captum.attr import visualization as viz
 
-from config import N_ROWS, N_COLS, TIME_DICT, DATA_BASE_PATH, ZERODOSE, CNN_CONFUSION
+from config import N_ROWS, N_COLS, TIME_DICT, DATA_BASE_PATH, ZERODOSE, CNN_CONFUSION, \
+    GRADCAM_PATH
 
 
 def visualize_gradcam(attr, img, batch_idx, labels, pred_labels):
@@ -39,8 +42,13 @@ def visualize_gradcam(attr, img, batch_idx, labels, pred_labels):
             show_colorbar=True,
             use_pyplot=False,
         )
+        if not os.path.isdir(GRADCAM_PATH):
+            print("GradCAM result directory not found !!!")
+            print("Creating the directory")
+            os.makedirs(GRADCAM_PATH)
+
         fig.savefig(
-            f'./grad_cam/gradcam_{batch_idx}_{idx}_label{labels[idx].item()}_pre'
+            f'{GRADCAM_PATH}/gradcam_{batch_idx}_{idx}_label{labels[idx].item()}_pre'
             f'd{pred_labels[idx].item()}.png'
         )
 
@@ -63,11 +71,8 @@ def plot_data(trainloss, valloss, filename_plot):
     fig = plt.figure(figsize=(10, 8))
     plt.plot([i for i in range(len(trainloss))], trainloss, 'r', label="Training")
     plt.plot([i for i in range(len(valloss))], valloss, 'g', label="Validation ")
+    plt.legend()
     fig.savefig(filename_plot)
-
-
-def get_dosage_rad_dat():
-    pass
 
 
 def get_data_and_count(verbose=False):
@@ -126,7 +131,6 @@ def plot_confusion_matrix(cnfsn_matrix, time_interval=None):
 def compute_padding(src_shape):
     """
     Computes the padding required to make uniform image dimension across the dataset.
-    ToDo: compute N_ROWS and N_COLS from the data, instead of using config file.
     :param src_shape: (numpy_arr) : shape of a sample image
     :return: (tuple) :  ((req. padding before row,req. padding after row),
                         (req. padding before column,req. padding after column))
