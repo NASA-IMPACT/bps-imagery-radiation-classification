@@ -162,7 +162,8 @@ def main():
     time_data_dict = restructure_time_data_dict(time_data_paths)
     # train_test_wrapper(data_paths) # use this running the classifier on the entire data
     time = input("Enter the data to be used in the classifier (Valid options: 4,24,48): ")
-    assert int(time) in (4, 24, 48), "Invalid option entered"
+    if int(time) not in [4, 24, 48]:
+        raise ValueError('Invalid option entered !!, I quit !!')
     # set test_only to True when only testing the network (ie. disable training)
     train_test_wrapper(time_data_dict[int(time)], test_only=False)
 
