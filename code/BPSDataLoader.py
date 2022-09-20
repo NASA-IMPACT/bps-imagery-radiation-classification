@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from torch.utils.data import Dataset
 
-from config import NUM_CLASS
+from config import NUM_CLASS, RAD_LABEL
 from utils import compute_padding
 
 
@@ -63,7 +63,7 @@ def cnn_data_processor(data_dict):
     :return: (pandas dataframe) contains path to the images and their corresponding
     labels
     """
-    rad_label_map = {rad: idx for idx, rad in enumerate(data_dict)}
+    rad_label_map = {rad: RAD_LABEL[rad] for rad in data_dict}
     data = {'Data': [], 'Label': []}
     for radiation, files in data_dict.items():
         for file in files:
