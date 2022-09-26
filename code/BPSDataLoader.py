@@ -95,11 +95,3 @@ def load_torch_data(data_path):
     test_data = RadDataLoader(test_paths, test_labels, NUM_CLASS, rotation_transform)
 
     return train_data, val_data, test_data
-
-
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
