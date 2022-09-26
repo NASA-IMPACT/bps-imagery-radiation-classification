@@ -99,11 +99,3 @@ def restructure_time_data_dict(time_data_dict):
             }
 
     return restructured_data_dict
-
-
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
