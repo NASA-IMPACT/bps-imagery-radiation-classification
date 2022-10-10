@@ -23,8 +23,8 @@ from ptorchtools import EarlyStopping
 from utils import get_data_and_count, restructure_time_data_dict
 from utils import plot_data, compute_correct_pred_torch, plot_confusion_matrix, visualize_gradcam
 
-device = "mps" if torch.backends.mps.is_available() else "cpu"
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = "mps" if torch.backends.mps.is_available() else "cpu"
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
 earlystopping = EarlyStopping(patience=5, verbose=True)
