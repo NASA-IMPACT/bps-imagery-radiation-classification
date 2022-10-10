@@ -11,19 +11,6 @@ from data_explorer import get_data_and_count
 from utils import restructure_time_data_dict, plot_confusion_matrix
 
 
-def compute_img_avg_brightness(data_arr):
-    """
-    computes the average brightness of an image
-    :param data_arr: Input image
-    :return: Average brightness of the image
-    """
-    total_brightness = np.sum(data_arr)
-    area = data_arr.shape[0] * data_arr.shape[1]
-    avg_brightness = total_brightness / area
-
-    return avg_brightness
-
-
 def split_train_test(data_dict, train_size):
     """
     Splits the data into test-train
@@ -101,7 +88,7 @@ def classifier(data_dict, time_period=None):
     for radiation, file_list in data_dict.items():
         for file in file_list:
             file_data = imread(file)
-            avg_brightness = compute_img_avg_brightness(file_data)
+            avg_brightness = np.mean(file_data)
             brightness_dict[rad_list.index(radiation)].append(avg_brightness)
 
     train_data, test_data = split_train_test(brightness_dict, train_size=THRESHOLD_TRAIN_SIZE)
