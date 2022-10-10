@@ -71,7 +71,9 @@ def test_classification(test_data, class_mean, time_period):
     y_test = [tup[0] for tup in prediction_list]
     y_pred = [tup[1] for tup in prediction_list]
     print("Accuracy on unknown data is", classification_report(y_test, y_pred))
-    plot_confusion_matrix(confusion_matrix(y_test, y_pred), time_period)
+    plot_confusion_matrix(
+        confusion_matrix(y_test, y_pred), f'confusion_matrix_time' f'{time_period}.png'
+    )
 
 
 def classifier(data_dict, time_period=None):
